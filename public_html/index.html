@@ -7,10 +7,18 @@
     </head>
     <body ng-app="app">
         <div  ng-controller="ctrl">
-            <div >Nombre: {{ estudiante.nombre}}</div>
-            <div >Apellido: {{ estudiante.apellido}}</div>
-            <div >Tipo documento: {{ estudiante.documento.tipo}}</div>
-            <div >Número documento: {{ estudiante.documento.numero}}</div>
+            <table>
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+                <tr ng-repeat="estu in estudiantes">
+                    <td>{{estu.documento.tipo + ' - ' + estu.documento.numero}}</td>
+                    <td>{{estu.nombre}}</td>
+                    <td>{{estu.apellido}}</td>
+                </tr>
+            </table>
         </div>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js" ></script>
@@ -18,14 +26,32 @@
         <script type="text/javascript">
                 angular.module("app", [])
                         .controller("ctrl", ['$scope', function ($scope) {
-                                $scope.estudiante = {
-                                    documento: {
-                                        tipo: 'CC',
-                                        numero: '1107037136'
+                                $scope.estudiantes = [
+                                    {
+                                        documento: {
+                                            tipo: 'CC',
+                                            numero: '23423423'
+                                        },
+                                        nombre: 'Pablo',
+                                        apellido: 'Bastidas'
                                     },
-                                    nombre: 'Pablo',
-                                    apellido: 'Bastidas'
-                                };
+                                    {
+                                        documento: {
+                                            tipo: 'CC',
+                                            numero: '1231312'
+                                        },
+                                        nombre: 'Viviana',
+                                        apellido: 'Rodriguez'
+                                    },
+                                    {
+                                        documento: {
+                                            tipo: 'CC',
+                                            numero: '4535435455'
+                                        },
+                                        nombre: 'Sergio',
+                                        apellido: 'Morales'
+                                    }
+                                ];
                             }]);
 
         </script>
