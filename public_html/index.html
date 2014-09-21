@@ -13,7 +13,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                 </tr>
-                <tr ng-repeat="estu in estudiantes">
+                <tr ng-repeat="estu in estudiantes | orderBy: 'documento.numero'">
                     <td>{{estu.documento.tipo + ' - ' + estu.documento.numero}}</td>
                     <td>{{estu.nombre}}</td>
                     <td>{{estu.apellido}}</td>
