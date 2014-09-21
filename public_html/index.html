@@ -7,13 +7,21 @@
     </head>
     <body ng-app="app">
         <div  ng-controller="ctrl">
+            
+            <label for="slcOrdenar">Ordenar por:</label>
+            <select id="slcOrdenar" ng-model="ordenarPor">
+                <option value="nombre">Nombre</option>
+                <option value="apellido">Apellido</option>
+                <option value="documento.numero">Número de documento</option>
+            </select>
+            
             <table>
                 <tr>
                     <th>Documento</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                 </tr>
-                <tr ng-repeat="estu in estudiantes | orderBy: 'documento.numero'">
+                <tr ng-repeat="estu in estudiantes | orderBy: ordenarPor">
                     <td>{{estu.documento.tipo + ' - ' + estu.documento.numero}}</td>
                     <td>{{estu.nombre}}</td>
                     <td>{{estu.apellido}}</td>
@@ -26,6 +34,8 @@
         <script type="text/javascript">
                 angular.module("app", [])
                         .controller("ctrl", ['$scope', function ($scope) {
+                                $scope.ordenarPor = 'nombre';
+                                
                                 $scope.estudiantes = [
                                     {
                                         documento: {
@@ -38,15 +48,15 @@
                                     {
                                         documento: {
                                             tipo: 'CC',
-                                            numero: '1231312'
+                                            numero: '345345'
                                         },
-                                        nombre: 'Viviana',
-                                        apellido: 'Rodriguez'
+                                        nombre: 'Juan',
+                                        apellido: 'Ortiz'
                                     },
                                     {
                                         documento: {
                                             tipo: 'CC',
-                                            numero: '4535435455'
+                                            numero: '123123'
                                         },
                                         nombre: 'Sergio',
                                         apellido: 'Morales'
