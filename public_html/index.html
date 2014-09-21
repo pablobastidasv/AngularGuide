@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <input ng-model="nombre">
-        <div >{{nombre}}</div>
-        
+    <body ng-app="app">
+        <div  ng-controller="ctrl">
+            <div >Nombre: {{ estudiante.nombre}}</div>
+            <div >Apellido: {{ estudiante.apellido}}</div>
+            <div >Tipo documento: {{ estudiante.documento.tipo}}</div>
+            <div >Número documento: {{ estudiante.documento.numero}}</div>
+        </div>
+
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js" ></script>
+
+        <script type="text/javascript">
+                angular.module("app", [])
+                        .controller("ctrl", ['$scope', function ($scope) {
+                                $scope.estudiante = {
+                                    documento: {
+                                        tipo: 'CC',
+                                        numero: '1107037136'
+                                    },
+                                    nombre: 'Pablo',
+                                    apellido: 'Bastidas'
+                                };
+                            }]);
+
+        </script>
     </body>
 </html>
