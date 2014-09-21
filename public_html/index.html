@@ -4,65 +4,77 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     </head>
     <body ng-app="app">
         <div  ng-controller="ctrl">
+
+            <div class="form-group">
+                <label for="slcOrdenar">Ordenar por:</label>
+                <select id="slcOrdenar" class="form-control" ng-model="ordenarPor">
+                    <option value="nombre">Nombre</option>
+                    <option value="apellido">Apellido</option>
+                    <option value="documento.numero">Número de documento</option>
+                    <option value="deuda:">Deuda</option>
+                </select>
+            </div>
             
-            <label for="slcOrdenar">Ordenar por:</label>
-            <select id="slcOrdenar" ng-model="ordenarPor">
-                <option value="nombre">Nombre</option>
-                <option value="apellido">Apellido</option>
-                <option value="documento.numero">Número de documento</option>
-            </select>
-            
-            <table>
+            <table class="table">
                 <tr>
                     <th>Documento</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Deuda</th>
                 </tr>
-                <tr ng-repeat="estu in estudiantes | orderBy: ordenarPor">
+                <tr ng-repeat="estu in estudiantes| orderBy: ordenarPor">
                     <td>{{estu.documento.tipo + ' - ' + estu.documento.numero}}</td>
                     <td>{{estu.nombre}}</td>
                     <td>{{estu.apellido}}</td>
+                    <td>{{estu.deuda| currency}}</td>
                 </tr>
             </table>
         </div>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
-                angular.module("app", [])
-                        .controller("ctrl", ['$scope', function ($scope) {
-                                $scope.ordenarPor = 'nombre';
-                                
-                                $scope.estudiantes = [
-                                    {
-                                        documento: {
-                                            tipo: 'CC',
-                                            numero: '23423423'
-                                        },
-                                        nombre: 'Pablo',
-                                        apellido: 'Bastidas'
-                                    },
-                                    {
-                                        documento: {
-                                            tipo: 'CC',
-                                            numero: '345345'
-                                        },
-                                        nombre: 'Juan',
-                                        apellido: 'Ortiz'
-                                    },
-                                    {
-                                        documento: {
-                                            tipo: 'CC',
-                                            numero: '123123'
-                                        },
-                                        nombre: 'Sergio',
-                                        apellido: 'Morales'
-                                    }
-                                ];
-                            }]);
+                        angular.module("app", [])
+                                .controller("ctrl", ['$scope', function ($scope) {
+                                        $scope.ordenarPor = 'nombre';
+
+                                        $scope.estudiantes = [
+                                            {
+                                                documento: {
+                                                    tipo: 'CC',
+                                                    numero: '23423423'
+                                                },
+                                                nombre: 'Pablo',
+                                                apellido: 'Bastidas',
+                                                deuda: 300000
+                                            },
+                                            {
+                                                documento: {
+                                                    tipo: 'CC',
+                                                    numero: '345345'
+                                                },
+                                                nombre: 'Juan',
+                                                apellido: 'Ortiz',
+                                                deuda: 500000
+                                            },
+                                            {
+                                                documento: {
+                                                    tipo: 'CC',
+                                                    numero: '123123'
+                                                },
+                                                nombre: 'Sergio',
+                                                apellido: 'Morales',
+                                                deuda: 100000
+                                            }
+                                        ];
+                                    }]);
 
         </script>
     </body>
