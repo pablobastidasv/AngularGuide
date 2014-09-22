@@ -3,18 +3,22 @@
             .controller("ctrl", ['$scope', function ($scope) {
                     $scope.ordenarPor = 'nombre';
                     $scope.nuevoEstudiante = {};
+                    $scope.mostrarFormulario = false;
 
                     $scope.adicionarNuevoEstudiante = function () {
                         $scope.nuevoEstudiante = {};
+                        $scope.mostrarFormulario = true;                        
                     };
                     
                     $scope.cancelarCreacionEstudiante = function (){
                         $scope.nuevoEstudiante = {};
+                        $scope.mostrarFormulario = false;
                     };
                     
                     $scope.guardarEstudiante = function(){
                         $scope.estudiantes.push($scope.nuevoEstudiante);
                         
+                        $scope.mostrarFormulario = false;
                         $scope.nuevoEstudiante = {};
                     };
                     

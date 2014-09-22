@@ -36,7 +36,13 @@
                     <td>{{estu.deuda| currency}}</td>
                 </tr>
             </table>
-            <div class="panel">
+
+            <button ng-hide="mostrarFormulario" 
+                    class="btn btn-primary"
+                    ng-click="adicionarNuevoEstudiante()">Crear nuevo estudiante</button>
+
+            <div ng-show="mostrarFormulario"
+                 class="panel">
 
                 <form ng-submit="guardarEstudiante()">
                     <div class="row">
