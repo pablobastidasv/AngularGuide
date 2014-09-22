@@ -7,6 +7,22 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+        <style type="text/css">
+            input.ng-invalid {
+                border: 1px solid red;
+            }
+            select.ng-invalid {
+                border: 1px solid red;
+            }
+            input.ng-valid {
+                border: 1px solid green;
+            }
+            select.ng-valid {
+                border: 1px solid green;
+            }
+        </style>
+        
     </head>
     <body ng-app="app"
           class="container">
@@ -44,13 +60,18 @@
             <div ng-show="mostrarFormulario"
                  class="panel">
 
-                <form ng-submit="guardarEstudiante()">
+                <form ng-submit="guardarEstudiante()"
+                      name="frmEstudiante"
+                      role="form" 
+                      novalidate>
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label for="slcTipoDocumento">Tipo de documento:</label>
                             <select id="slcTipoDocumento" 
                                     class="form-control" 
+                                    required="required"
                                     ng-model="nuevoEstudiante.documento.tipo">
+                                <option value="">-- Seleccione una opcion --</option>
                                 <option value="CC">Cedula</option>
                                 <option value="TI">Tarjeta de identidad</option>
                                 <option value="CE">Cedula de extranjería</option>
@@ -62,6 +83,7 @@
                             <input id="txtNumeroDocumento" 
                                    placeholder="Número de documento"
                                    class="form-control" 
+                                   required="required"
                                    ng-model="nuevoEstudiante.documento.numero">
                         </div>
                     </div>
@@ -71,6 +93,7 @@
                             <input id="txtNombre" 
                                    placeholder="Nombre(s)"
                                    class="form-control" 
+                                   required="required"
                                    ng-model="nuevoEstudiante.nombre">
                         </div>
                     </div>
@@ -80,6 +103,7 @@
                             <input id="txtApellido" 
                                    placeholder="Apellido(s)"
                                    class="form-control" 
+                                   required="required"
                                    ng-model="nuevoEstudiante.apellido">
                         </div>
                     </div>
@@ -90,11 +114,13 @@
                                    placeholder="Deuda"
                                    type="number"
                                    class="form-control" 
+                                   required="required"
                                    ng-model="nuevoEstudiante.deuda">
                         </div>
                     </div>
 
                     <button class="btn btn-success"
+                            ng-disabled="!frmEstudiante.$valid"
                             type="submit">Guardar</button>
 
                     <button class="btn btn-danger"
